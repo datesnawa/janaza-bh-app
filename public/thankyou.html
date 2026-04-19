@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>شكراً</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #1a3a2a;
+      --green-mid: #2d5a3d;
+      --cream: #f5f0e8;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+      background: var(--green-deep);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 48px 32px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .icon { font-size: 56px; margin-bottom: 20px; }
+    h1 {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 26px;
+      color: var(--green-deep);
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 14px;
+      color: #555;
+      line-height: 1.7;
+      font-family: 'Noto Naskh Arabic', serif;
+    }
+    .ayah {
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid #e0d8c8;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 16px;
+      color: var(--green-mid);
+      line-height: 1.8;
+    }
+    @keyframes pop {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="icon" id="icon">✅</div>
+    <h1 id="title">جزاك الله خيراً</h1>
+    <p id="msg">تم تسجيلك بنجاح. ستصلك إشعارات صلاة الجنازة على رقمك عبر واتساب.</p>
+    <div class="ayah" id="ayah">
+      إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ
+    </div>
+  </div>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type');
+    if (type === 'notify') {
+      document.getElementById('icon').textContent = '🕌';
+      document.getElementById('title').textContent = 'تم الإرسال بنجاح';
+      document.getElementById('msg').textContent = 'تم استلام إشعار الوفاة. سيتم مراجعته والإرسال للمشتركين بإذن الله في أقرب وقت.';
+      document.getElementById('ayah').textContent = 'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ';
+    }
+  </script>
+</body>
+</html>

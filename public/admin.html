@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لوحة التحكم — إشعارات الجنازة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green-deep: #1a3a2a;
+      --green-mid: #2d5a3d;
+      --green-light: #4a8c5c;
+      --cream: #f5f0e8;
+      --cream-dark: #e8e0d0;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --white: #ffffff;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --error: #c0392b;
+      --success: #27ae60;
+      --pending: #e67e22;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Noto Sans Arabic', sans-serif;
+      background: #f0ece4;
+      min-height: 100vh;
+    }
+
+    /* LOGIN SCREEN */
+    .login-screen {
+      min-height: 100vh;
+      background: var(--green-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .login-card {
+      background: var(--cream);
+      border-radius: 20px;
+      padding: 40px 32px;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+    .login-card .icon { font-size: 40px; margin-bottom: 16px; }
+    .login-card h1 {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 22px;
+      color: var(--green-deep);
+      margin-bottom: 6px;
+    }
+    .login-card p {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+    }
+    .login-card input {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 14px;
+      text-align: center;
+      letter-spacing: 3px;
+    }
+    .login-card input:focus {
+      border-color: var(--green-light);
+      box-shadow: 0 0 0 3px rgba(74,140,92,0.12);
+    }
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: var(--green-mid);
+      color: var(--cream);
+      border: none;
+      border-radius: 12px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-btn:hover { background: var(--green-deep); }
+    .login-error {
+      color: var(--error);
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* MAIN DASHBOARD */
+    .dashboard { display: none; }
+    .topbar {
+      background: var(--green-deep);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-left .logo { font-size: 24px; }
+    .topbar-left h1 {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 18px;
+      color: var(--cream);
+      font-weight: 700;
+    }
+    .topbar-left span {
+      font-size: 11px;
+      color: var(--gold-light);
+      display: block;
+      margin-top: 1px;
+    }
+    .logout-btn {
+      background: rgba(245,240,232,0.1);
+      border: 1px solid rgba(245,240,232,0.2);
+      color: var(--cream);
+      padding: 7px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'Noto Sans Arabic', sans-serif;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover { background: rgba(245,240,232,0.2); }
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      padding: 20px 28px;
+      background: var(--green-mid);
+    }
+    .stat-item {
+      text-align: center;
+      color: var(--cream);
+    }
+    .stat-item .num {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .stat-item .lbl {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 12px;
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    .main-content {
+      padding: 24px 28px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--cream-dark);
+      padding-bottom: 0;
+    }
+    .tab {
+      padding: 10px 20px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s;
+    }
+    .tab.active {
+      color: var(--green-mid);
+      border-bottom-color: var(--green-mid);
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-header h2 {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 18px;
+      color: var(--green-deep);
+    }
+    .refresh-btn {
+      background: var(--green-mid);
+      color: var(--cream);
+      border: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'Noto Sans Arabic', sans-serif;
+      transition: background 0.2s;
+    }
+    .refresh-btn:hover { background: var(--green-deep); }
+
+    /* NOTIFICATION CARDS */
+    .notif-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      border-right: 4px solid var(--pending);
+      transition: box-shadow 0.2s;
+    }
+    .notif-card.dispatched { border-right-color: var(--success); }
+    .notif-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+    .notif-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 12px;
+    }
+    .notif-name {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--green-deep);
+    }
+    .notif-name .gender-tag {
+      font-size: 12px;
+      background: rgba(45,90,61,0.1);
+      color: var(--green-mid);
+      padding: 2px 10px;
+      border-radius: 10px;
+      margin-right: 8px;
+      font-weight: 600;
+    }
+    .status-badge {
+      font-size: 12px;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .status-badge.pending {
+      background: rgba(230,126,34,0.12);
+      color: var(--pending);
+    }
+    .status-badge.dispatched {
+      background: rgba(39,174,96,0.12);
+      color: var(--success);
+    }
+    .notif-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .detail-item .di { font-size: 15px; flex-shrink: 0; }
+    .detail-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+    .msg-preview-box {
+      background: var(--green-deep);
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 14px;
+      color: var(--cream);
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 12px;
+      line-height: 1.7;
+      white-space: pre-line;
+      max-height: 120px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+    .msg-preview-box.expanded { max-height: none; }
+    .msg-preview-box::after {
+      content: 'اضغط للتوسيع ▼';
+      position: absolute;
+      bottom: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--gold-light);
+    }
+    .msg-preview-box.expanded::after { content: 'اضغط للطي ▲'; }
+    .notif-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-approve {
+      background: var(--success);
+      color: white;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 10px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-approve:hover { opacity: 0.85; }
+    .btn-approve:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-cert {
+      background: rgba(201,168,76,0.15);
+      border: 1px solid rgba(201,168,76,0.4);
+      color: #6b5a2a;
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'Noto Sans Arabic', sans-serif;
+      transition: background 0.2s;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-cert:hover { background: rgba(201,168,76,0.25); }
+    .submitter-info {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-right: auto;
+    }
+    .dispatched-time {
+      font-size: 11px;
+      color: var(--success);
+      margin-right: auto;
+    }
+
+    /* SUBSCRIBERS TAB */
+    .subscriber-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .subscriber-table th {
+      background: var(--green-deep);
+      color: var(--cream);
+      padding: 12px 16px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: right;
+    }
+    .subscriber-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--cream-dark);
+      font-size: 13px;
+      color: var(--text-primary);
+    }
+    .subscriber-table tr:last-child td { border-bottom: none; }
+    .subscriber-table tr:hover td { background: rgba(74,140,92,0.04); }
+    .gov-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      background: rgba(45,90,61,0.1);
+      color: var(--green-mid);
+    }
+
+    /* QR TAB */
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .qr-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      text-align: center;
+    }
+    .qr-card .mosque-name {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--green-deep);
+      margin-bottom: 4px;
+    }
+    .qr-card .mosque-gov {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .qr-placeholder {
+      width: 160px;
+      height: 160px;
+      margin: 0 auto 14px;
+      background: var(--cream);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 60px;
+      border: 2px dashed var(--cream-dark);
+    }
+    .qr-url {
+      font-size: 10px;
+      color: var(--text-secondary);
+      word-break: break-all;
+      background: var(--cream);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      text-align: left;
+      direction: ltr;
+    }
+    .btn-gen-qr {
+      background: var(--green-mid);
+      color: var(--cream);
+      border: none;
+      padding: 9px 20px;
+      border-radius: 10px;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+    .btn-gen-qr:hover { background: var(--green-deep); }
+
+    .empty-state {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--text-secondary);
+    }
+    .empty-state .ei { font-size: 48px; margin-bottom: 12px; }
+    .empty-state p { font-family: 'Noto Naskh Arabic', serif; font-size: 16px; }
+
+    .loading-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+      font-family: 'Noto Naskh Arabic', serif;
+    }
+
+    @media (max-width: 600px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .notif-details { grid-template-columns: 1fr; }
+      .main-content { padding: 16px; }
+      .topbar { padding: 14px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="login-screen" id="loginScreen">
+    <div class="login-card">
+      <div class="icon">🔐</div>
+      <h1>لوحة التحكم</h1>
+      <p>Janaza BH — Admin Dashboard</p>
+      <input type="password" id="passwordInput" placeholder="كلمة المرور" onkeydown="if(event.key==='Enter') doLogin()" />
+      <button class="login-btn" onclick="doLogin()">دخول</button>
+      <div class="login-error" id="loginError">كلمة المرور غير صحيحة</div>
+    </div>
+  </div>
+
+  <!-- MAIN DASHBOARD -->
+  <div class="dashboard" id="dashboard">
+
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="logo">🕌</div>
+        <div>
+          <h1>إشعارات الجنازة</h1>
+          <span>Janaza BH — Admin Panel</span>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">خروج</button>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-item">
+        <div class="num" id="statPending">—</div>
+        <div class="lbl">بانتظار المراجعة</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" id="statDispatched">—</div>
+        <div class="lbl">تم الإرسال</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" id="statSubscribers">—</div>
+        <div class="lbl">المشتركون</div>
+      </div>
+      <div class="stat-item">
+        <div class="num" id="statMosques">—</div>
+        <div class="lbl">المساجد</div>
+      </div>
+    </div>
+
+    <div class="main-content">
+
+      <div class="tabs">
+        <div class="tab active" onclick="switchTab('notifications', this)">الإشعارات المعلقة</div>
+        <div class="tab" onclick="switchTab('subscribers', this)">المشتركون</div>
+        <div class="tab" onclick="switchTab('qrcodes', this)">رموز QR</div>
+        <div class="tab" onclick="switchTab('history', this)">السجل</div>
+      </div>
+
+      <!-- TAB 1: PENDING NOTIFICATIONS -->
+      <div class="tab-content active" id="tab-notifications">
+        <div class="section-header">
+          <h2>الإشعارات بانتظار الموافقة</h2>
+          <button class="refresh-btn" onclick="loadNotifications()">🔄 تحديث</button>
+        </div>
+        <div id="notifList"><div class="loading-state">جارٍ التحميل...</div></div>
+      </div>
+
+      <!-- TAB 2: SUBSCRIBERS -->
+      <div class="tab-content" id="tab-subscribers">
+        <div class="section-header">
+          <h2>المشتركون في الإشعارات</h2>
+          <button class="refresh-btn" onclick="loadSubscribers()">🔄 تحديث</button>
+        </div>
+        <div id="subList"><div class="loading-state">جارٍ التحميل...</div></div>
+      </div>
+
+      <!-- TAB 3: QR CODES -->
+      <div class="tab-content" id="tab-qrcodes">
+        <div class="section-header">
+          <h2>رموز QR للمساجد</h2>
+          <button class="refresh-btn" onclick="loadQRCodes()">🔄 تحديث</button>
+        </div>
+        <div id="qrList"><div class="loading-state">جارٍ التحميل...</div></div>
+      </div>
+
+      <!-- TAB 4: HISTORY -->
+      <div class="tab-content" id="tab-history">
+        <div class="section-header">
+          <h2>سجل الإشعارات المُرسلة</h2>
+          <button class="refresh-btn" onclick="loadHistory()">🔄 تحديث</button>
+        </div>
+        <div id="historyList"><div class="loading-state">جارٍ التحميل...</div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    let adminToken = sessionStorage.getItem('adminToken');
+    if (adminToken) showDashboard();
+
+    function doLogin() {
+      const pw = document.getElementById('passwordInput').value;
+      fetch('/api/admin/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw })
+      })
+      .then(r => r.json())
+      .then(data => {
+        if (data.success) {
+          adminToken = data.token;
+          sessionStorage.setItem('adminToken', adminToken);
+          showDashboard();
+        } else {
+          document.getElementById('loginError').style.display = 'block';
+        }
+      })
+      .catch(() => {
+        document.getElementById('loginError').style.display = 'block';
+      });
+    }
+
+    function doLogout() {
+      sessionStorage.removeItem('adminToken');
+      adminToken = null;
+      document.getElementById('dashboard').style.display = 'none';
+      document.getElementById('loginScreen').style.display = 'flex';
+    }
+
+    function showDashboard() {
+      document.getElementById('loginScreen').style.display = 'none';
+      document.getElementById('dashboard').style.display = 'block';
+      loadStats();
+      loadNotifications();
+    }
+
+    function switchTab(name, el) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('tab-' + name).classList.add('active');
+      if (name === 'subscribers') loadSubscribers();
+      if (name === 'qrcodes') loadQRCodes();
+      if (name === 'history') loadHistory();
+    }
+
+    function authHeaders() {
+      return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + adminToken };
+    }
+
+    async function loadStats() {
+      try {
+        const r = await fetch('/api/admin/stats', { headers: authHeaders() });
+        const d = await r.json();
+        document.getElementById('statPending').textContent = d.pending ?? '0';
+        document.getElementById('statDispatched').textContent = d.dispatched ?? '0';
+        document.getElementById('statSubscribers').textContent = d.subscribers ?? '0';
+        document.getElementById('statMosques').textContent = d.mosques ?? '0';
+      } catch(e) {}
+    }
+
+    async function loadNotifications() {
+      document.getElementById('notifList').innerHTML = '<div class="loading-state">جارٍ التحميل...</div>';
+      try {
+        const r = await fetch('/api/admin/notifications?status=pending', { headers: authHeaders() });
+        const data = await r.json();
+        renderNotifications(data.notifications || [], 'notifList', false);
+      } catch(e) {
+        document.getElementById('notifList').innerHTML = '<div class="empty-state"><div class="ei">⚠️</div><p>تعذّر تحميل البيانات</p></div>';
+      }
+    }
+
+    async function loadHistory() {
+      document.getElementById('historyList').innerHTML = '<div class="loading-state">جارٍ التحميل...</div>';
+      try {
+        const r = await fetch('/api/admin/notifications?status=dispatched', { headers: authHeaders() });
+        const data = await r.json();
+        renderNotifications(data.notifications || [], 'historyList', true);
+      } catch(e) {}
+    }
+
+    function buildMessage(n) {
+      const genderWord = n.gender === 'male' ? 'المتوفى' : 'المتوفاة';
+      const genderWordEn = n.gender === 'male' ? 'Brother' : 'Sister';
+      const loc = n.janaza_location + (n.janaza_area ? ' — ' + n.janaza_area : '');
+      return `🕌 إشعار صلاة الجنازة\n\nنُعلمكم بوفاة ${genderWord}: ${n.deceased_name}\n📍 مكان الصلاة: ${loc}\n🗓 الموعد: ${n.janaza_date}\n⏰ الوقت: ${n.janaza_time}\n\n---\n🕌 Janaza Prayer Notification\n\n${genderWordEn} ${n.deceased_name} has passed away.\nMay Allah have mercy on their soul.\n📍 Venue: ${loc}\n🗓 ${n.janaza_date} at ${n.janaza_time}\n\nللإلغاء / Unsubscribe: reply STOP`;
+    }
+
+    function renderNotifications(list, containerId, isHistory) {
+      const container = document.getElementById(containerId);
+      if (!list.length) {
+        container.innerHTML = `<div class="empty-state"><div class="ei">${isHistory ? '📭' : '✅'}</div><p>${isHistory ? 'لا يوجد سجل بعد' : 'لا توجد إشعارات معلقة'}</p></div>`;
+        return;
+      }
+      container.innerHTML = list.map(n => {
+        const msg = buildMessage(n);
+        const govMap = { capital: 'العاصمة', muharraq: 'المحرق', northern: 'الشمالية', southern: 'الجنوبية', all: 'جميع المحافظات' };
+        const statusAr = n.status === 'dispatched' ? 'تم الإرسال ✓' : 'بانتظار المراجعة';
+        return `
+        <div class="notif-card ${n.status}" id="card-${n.id}">
+          <div class="notif-top">
+            <div class="notif-name">
+              <span class="gender-tag">${n.gender === 'male' ? 'متوفى' : 'متوفاة'}</span>
+              ${n.deceased_name}
+            </div>
+            <span class="status-badge ${n.status}">${statusAr}</span>
+          </div>
+          <div class="notif-details">
+            <div class="detail-item"><span class="di">📍</span><div><strong>${n.janaza_location}</strong>${n.janaza_area ? ' — ' + n.janaza_area : ''}</div></div>
+            <div class="detail-item"><span class="di">🗺</span><div>${govMap[n.governorate] || n.governorate}</div></div>
+            <div class="detail-item"><span class="di">🗓</span><div>${n.janaza_date}</div></div>
+            <div class="detail-item"><span class="di">⏰</span><div>${n.janaza_time}</div></div>
+          </div>
+          <div class="msg-preview-box" onclick="this.classList.toggle('expanded')">${msg}</div>
+          <div class="notif-actions">
+            ${n.death_certificate_url ? `<a href="${n.death_certificate_url}" target="_blank" class="btn-cert">📄 شهادة الوفاة</a>` : '<span style="font-size:12px;color:#aaa">لا توجد شهادة مرفقة</span>'}
+            <span class="${n.status === 'dispatched' ? 'dispatched-time' : 'submitter-info'}">
+              ${n.status === 'dispatched' ? '✓ تم الإرسال' : '📞 ' + n.submitter_mobile}
+            </span>
+            ${!isHistory ? `<button class="btn-approve" id="btn-${n.id}" onclick="approveNotification('${n.id}')">✓ موافقة وإرسال</button>` : ''}
+          </div>
+        </div>`;
+      }).join('');
+    }
+
+    async function approveNotification(id) {
+      const btn = document.getElementById('btn-' + id);
+      btn.disabled = true;
+      btn.textContent = 'جارٍ الإرسال...';
+      try {
+        const r = await fetch('/api/admin/approve/' + id, {
+          method: 'POST',
+          headers: authHeaders()
+        });
+        const data = await r.json();
+        if (r.ok) {
+          const card = document.getElementById('card-' + id);
+          card.style.transition = 'opacity 0.4s';
+          card.style.opacity = '0';
+          setTimeout(() => { card.remove(); loadStats(); }, 400);
+          alert('✓ تم الإرسال بنجاح إلى ' + (data.sent || 0) + ' مشترك');
+        } else {
+          alert(data.message || 'حدث خطأ أثناء الإرسال');
+          btn.disabled = false;
+          btn.textContent = '✓ موافقة وإرسال';
+        }
+      } catch(e) {
+        alert('تعذّر الاتصال بالخادم');
+        btn.disabled = false;
+        btn.textContent = '✓ موافقة وإرسال';
+      }
+    }
+
+    async function loadSubscribers() {
+      document.getElementById('subList').innerHTML = '<div class="loading-state">جارٍ التحميل...</div>';
+      try {
+        const r = await fetch('/api/admin/subscribers', { headers: authHeaders() });
+        const data = await r.json();
+        const list = data.subscribers || [];
+        if (!list.length) {
+          document.getElementById('subList').innerHTML = '<div class="empty-state"><div class="ei">👥</div><p>لا يوجد مشتركون بعد</p></div>';
+          return;
+        }
+        const govMap = { capital: 'العاصمة', muharraq: 'المحرق', northern: 'الشمالية', southern: 'الجنوبية', all: 'الكل' };
+        document.getElementById('subList').innerHTML = `
+          <table class="subscriber-table">
+            <thead><tr>
+              <th>الاسم</th><th>الجوال</th><th>المحافظة</th><th>المسجد</th><th>تاريخ التسجيل</th>
+            </tr></thead>
+            <tbody>
+              ${list.map(s => `<tr>
+                <td>${s.name}</td>
+                <td style="direction:ltr;text-align:left">${s.mobile}</td>
+                <td><span class="gov-tag">${govMap[s.governorate_preference] || s.governorate_preference}</span></td>
+                <td>${s.mosque_name || '—'}</td>
+                <td style="font-size:11px;color:#888">${new Date(s.created_at).toLocaleDateString('ar-BH')}</td>
+              </tr>`).join('')}
+            </tbody>
+          </table>`;
+      } catch(e) {
+        document.getElementById('subList').innerHTML = '<div class="empty-state"><div class="ei">⚠️</div><p>تعذّر تحميل البيانات</p></div>';
+      }
+    }
+
+    async function loadQRCodes() {
+      document.getElementById('qrList').innerHTML = '<div class="loading-state">جارٍ التحميل...</div>';
+      try {
+        const r = await fetch('/api/admin/mosques', { headers: authHeaders() });
+        const data = await r.json();
+        const list = data.mosques || [];
+        const base = window.location.origin;
+        document.getElementById('qrList').innerHTML = `<div class="qr-grid">` + list.map(m => {
+          const url = `${base}/register.html?mosque=${m.mosque_id}&name=${encodeURIComponent(m.name_ar)}&gov=${m.governorate}`;
+          return `<div class="qr-card">
+            <div class="mosque-name">${m.name_ar}</div>
+            <div class="mosque-gov">${m.name_en || ''} — ${m.governorate}</div>
+            <div class="qr-placeholder">🕌</div>
+            <div class="qr-url">${url}</div>
+            <button class="btn-gen-qr" onclick="window.open('https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}','_blank')">
+              تحميل QR ↗
+            </button>
+          </div>`;
+        }).join('') + `</div>`;
+      } catch(e) {
+        document.getElementById('qrList').innerHTML = '<div class="empty-state"><div class="ei">⚠️</div><p>تعذّر تحميل البيانات</p></div>';
+      }
+    }
+  </script>
+
+</body>
+</html>
