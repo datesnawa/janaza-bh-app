@@ -19,7 +19,7 @@
       --text-secondary: #4a4a4a;
       --white: #ffffff;
       --error: #c0392b;
-      --shadow: 0 8px 32px rgba(26, 58, 42, 0.15);
+      --shadow: 0 8px 32px rgba(26,58,42,0.15);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -31,171 +31,55 @@
       align-items: center;
       justify-content: flex-start;
       padding: 24px 16px 40px;
-      position: relative;
       overflow-x: hidden;
     }
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 20%, rgba(74,140,92,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 20% 20%, rgba(74,140,92,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
       pointer-events: none;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 28px;
-      animation: fadeDown 0.6s ease both;
-    }
+    .header { text-align: center; margin-bottom: 28px; animation: fadeDown 0.6s ease both; }
     .crescent { font-size: 40px; line-height: 1; margin-bottom: 12px; filter: drop-shadow(0 2px 8px rgba(201,168,76,0.4)); }
-    .header h1 {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.4;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-    }
+    .header h1 { font-family: 'Noto Naskh Arabic', serif; font-size: 26px; font-weight: 700; color: var(--cream); line-height: 1.4; }
     .header p { font-size: 13px; color: var(--gold-light); margin-top: 6px; font-weight: 300; }
     .mosque-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(201,168,76,0.15);
-      border: 1px solid rgba(201,168,76,0.3);
-      color: var(--gold-light);
-      font-size: 12px;
-      padding: 5px 14px;
-      border-radius: 20px;
-      margin-top: 10px;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold-light); font-size: 12px; padding: 5px 14px; border-radius: 20px; margin-top: 10px;
     }
-    .card {
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 28px 24px;
-      width: 100%;
-      max-width: 420px;
-      box-shadow: var(--shadow), 0 2px 0 rgba(201,168,76,0.3);
-      animation: fadeUp 0.7s ease 0.1s both;
-    }
+    .card { background: var(--cream); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 420px; box-shadow: var(--shadow), 0 2px 0 rgba(201,168,76,0.3); animation: fadeUp 0.7s ease 0.1s both; }
+    .section-label { font-family: 'Noto Naskh Arabic', serif; font-size: 12px; font-weight: 700; color: var(--green-mid); letter-spacing: 0.5px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--cream-dark); }
     .field { margin-bottom: 18px; }
-    label {
-      display: block;
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--green-deep);
-      margin-bottom: 7px;
-    }
-    label .en {
-      font-family: 'Noto Sans Arabic', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--text-secondary);
-      margin-right: 6px;
-    }
-    input[type="text"],
-    input[type="tel"],
-    input[type="number"],
-    select {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid var(--cream-dark);
-      border-radius: 12px;
-      font-family: 'Noto Sans Arabic', sans-serif;
-      font-size: 15px;
-      color: var(--text-primary);
-      background: var(--white);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      text-align: right;
+    label { display: block; font-family: 'Noto Naskh Arabic', serif; font-size: 15px; font-weight: 600; color: var(--green-deep); margin-bottom: 7px; }
+    input[type="text"], input[type="tel"], select {
+      width: 100%; padding: 13px 16px; border: 1.5px solid var(--cream-dark); border-radius: 12px;
+      font-family: 'Noto Sans Arabic', sans-serif; font-size: 15px; color: var(--text-primary);
+      background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; text-align: right;
     }
     input[type="tel"] { direction: ltr; text-align: left; }
-    input[type="number"] { direction: ltr; text-align: left; }
-    input:focus, select:focus {
-      border-color: var(--green-light);
-      box-shadow: 0 0 0 3px rgba(74,140,92,0.12);
-    }
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    .gov-options {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+    input:focus, select:focus { border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(74,140,92,0.12); }
+    .gov-options { display: flex; flex-direction: column; gap: 10px; }
     .gov-option {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 16px;
-      border: 1.5px solid var(--cream-dark);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--white);
+      display: flex; align-items: center; gap: 12px; padding: 13px 16px;
+      border: 1.5px solid var(--cream-dark); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: var(--white);
     }
-    .gov-option:has(input:checked) {
-      border-color: var(--green-light);
-      background: rgba(74,140,92,0.06);
-    }
-    .gov-option input[type="radio"] {
-      width: 18px; height: 18px;
-      accent-color: var(--green-mid);
-      flex-shrink: 0;
-    }
-    .gov-option-text .ar {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--green-deep);
-      display: block;
-    }
-    .gov-option-text .en-small {
-      font-size: 11px;
-      color: var(--text-secondary);
-      display: block;
-      margin-top: 1px;
-    }
+    .gov-option:has(input:checked) { border-color: var(--green-light); background: rgba(74,140,92,0.06); }
+    .gov-option input[type="radio"] { width: 18px; height: 18px; accent-color: var(--green-mid); flex-shrink: 0; }
+    .gov-option-text .opt-main { font-family: 'Noto Naskh Arabic', serif; font-size: 14px; font-weight: 600; color: var(--green-deep); display: block; }
+    .gov-option-text .opt-sub { font-size: 11px; color: var(--text-secondary); display: block; margin-top: 1px; }
     .consent-box {
-      background: rgba(26,58,42,0.05);
-      border: 1px solid rgba(26,58,42,0.12);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      cursor: pointer;
-      margin-bottom: 24px;
+      background: rgba(26,58,42,0.05); border: 1px solid rgba(26,58,42,0.12); border-radius: 12px;
+      padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; cursor: pointer; margin-bottom: 24px;
     }
-    .consent-box input[type="checkbox"] {
-      width: 18px; height: 18px;
-      accent-color: var(--green-mid);
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .consent-text {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 13px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
+    .consent-box input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green-mid); flex-shrink: 0; margin-top: 2px; }
+    .consent-text { font-family: 'Noto Naskh Arabic', serif; font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
     .btn-submit {
-      width: 100%;
-      padding: 15px;
-      background: var(--green-mid);
-      color: var(--cream);
-      border: none;
-      border-radius: 14px;
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(45,90,61,0.35);
+      width: 100%; padding: 15px; background: var(--green-mid); color: var(--cream); border: none;
+      border-radius: 14px; font-family: 'Noto Naskh Arabic', serif; font-size: 18px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.1s; box-shadow: 0 4px 16px rgba(45,90,61,0.35);
     }
     .btn-submit:hover { background: var(--green-deep); }
     .btn-submit:active { transform: scale(0.98); }
@@ -203,41 +87,15 @@
     .error-msg { color: var(--error); font-size: 12px; margin-top: 5px; display: none; }
     .divider { height: 1px; background: var(--cream-dark); margin: 20px 0; }
     .lang-toggle {
-      position: fixed;
-      top: 16px; left: 16px;
-      background: rgba(245,240,232,0.15);
-      border: 1px solid rgba(245,240,232,0.25);
-      color: var(--cream);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: background 0.2s;
+      position: fixed; top: 16px; left: 16px;
+      background: rgba(245,240,232,0.15); border: 1px solid rgba(245,240,232,0.25);
+      color: var(--cream); border-radius: 20px; padding: 5px 14px; font-size: 12px;
+      cursor: pointer; backdrop-filter: blur(10px); transition: background 0.2s; font-family: 'Noto Sans Arabic', sans-serif;
     }
-    .spinner {
-      display: none;
-      width: 18px; height: 18px;
-      border: 2px solid rgba(245,240,232,0.3);
-      border-top-color: var(--cream);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto;
-    }
+    .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(245,240,232,0.3); border-top-color: var(--cream); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
     @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    .section-label {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--green-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 14px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--cream-dark);
-    }
   </style>
 </head>
 <body>
@@ -248,83 +106,63 @@
     <div class="crescent">🕌</div>
     <h1 id="mainTitle">إشعارات صلاة الجنازة</h1>
     <p id="subTitle">سجّل رقمك لتصلك إشعارات الجنازة في منطقتك</p>
-    <div class="mosque-badge">
-      <span>📍</span>
-      <span id="mosqueName">جارٍ تحميل بيانات المسجد...</span>
-    </div>
+    <div class="mosque-badge"><span>📍</span><span id="mosqueName">جارٍ تحميل بيانات المسجد...</span></div>
   </div>
 
   <div class="card">
     <form id="registerForm" onsubmit="handleSubmit(event)">
 
-      <!-- SECTION 1: Personal Info -->
       <div class="section-label" id="sec1Label">📋 البيانات الشخصية</div>
 
       <div class="field">
-        <label for="name">
-          <span id="labelName">الاسم الكامل</span>
-          <span class="en" id="labelNameEn">Full Name</span>
-        </label>
-        <input type="text" id="name" name="name" placeholder="مثال: أحمد محمد العلي" required />
+        <label id="labelName" for="name">الاسم الكامل</label>
+        <input type="text" id="name" placeholder="مثال: أحمد محمد العلي" required />
         <div class="error-msg" id="nameError">الرجاء إدخال الاسم</div>
       </div>
 
       <div class="field">
-        <label for="mobile">
-          <span id="labelMobile">رقم الجوال (واتساب)</span>
-          <span class="en" id="labelMobileEn">Mobile (WhatsApp)</span>
-        </label>
-        <input type="tel" id="mobile" name="mobile" placeholder="+973 3XXX XXXX" required />
+        <label id="labelMobile" for="mobile">رقم الجوال (واتساب)</label>
+        <input type="tel" id="mobile" placeholder="+973 3XXX XXXX" required />
         <div class="error-msg" id="mobileError">الرجاء إدخال رقم صحيح</div>
       </div>
 
       <div class="divider"></div>
-
-      <!-- SECTION 2: Location -->
       <div class="section-label" id="sec2Label">📍 بيانات الموقع</div>
 
       <div class="field">
-        <label for="governorate">
-          <span id="labelGovSelect">المحافظة</span>
-          <span class="en" id="labelGovSelectEn">Governorate</span>
-        </label>
-        <select id="governorate" name="governorate" required>
-          <option value="">— اختر المحافظة —</option>
-          <option value="capital">محافظة العاصمة — Capital</option>
-          <option value="muharraq">محافظة المحرق — Muharraq</option>
-          <option value="northern">المحافظة الشمالية — Northern</option>
-          <option value="southern">المحافظة الجنوبية — Southern</option>
+        <label id="labelGov" for="governorate">المحافظة</label>
+        <select id="governorate" required>
+          <option value="" id="govPlaceholder">— اختر المحافظة —</option>
+          <option value="capital" id="govCapital">محافظة العاصمة</option>
+          <option value="muharraq" id="govMuharraq">محافظة المحرق</option>
+          <option value="northern" id="govNorthern">المحافظة الشمالية</option>
+          <option value="southern" id="govSouthern">المحافظة الجنوبية</option>
         </select>
         <div class="error-msg" id="govError">الرجاء اختيار المحافظة</div>
       </div>
 
       <div class="field">
-        <label for="block">
-          <span id="labelBlock">رقم المنطقة / البلوك</span>
-          <span class="en" id="labelBlockEn">Block Number</span>
-        </label>
-        <input type="text" id="block" name="block" placeholder="مثال: 215" />
+        <label id="labelBlock" for="block">رقم البلوك / المنطقة</label>
+        <input type="text" id="block" placeholder="مثال: 215" />
       </div>
 
       <div class="divider"></div>
-
-      <!-- SECTION 3: Notification Preference -->
       <div class="section-label" id="sec3Label">🔔 تفضيل الإشعارات</div>
 
       <div class="field">
         <div class="gov-options">
           <label class="gov-option">
-            <input type="radio" name="notif_preference" value="auto" checked />
+            <input type="radio" name="notif_pref" value="auto" checked />
             <div class="gov-option-text">
-              <span class="ar" id="govAutoAr">محافظتي فقط</span>
-              <span class="en-small" id="govAutoEn">My governorate only</span>
+              <span class="opt-main" id="prefMyGovMain">محافظتي فقط</span>
+              <span class="opt-sub" id="prefMyGovSub">إشعارات من محافظتك فقط</span>
             </div>
           </label>
           <label class="gov-option">
-            <input type="radio" name="notif_preference" value="all" />
+            <input type="radio" name="notif_pref" value="all" />
             <div class="gov-option-text">
-              <span class="ar" id="govAllAr">جميع المحافظات</span>
-              <span class="en-small" id="govAllEn">All governorates across Bahrain</span>
+              <span class="opt-main" id="prefAllMain">جميع المحافظات</span>
+              <span class="opt-sub" id="prefAllSub">جميع إشعارات الجنازة في البحرين</span>
             </div>
           </label>
         </div>
@@ -333,10 +171,8 @@
       <div class="divider"></div>
 
       <label class="consent-box" for="consent">
-        <input type="checkbox" id="consent" name="consent" required />
-        <span class="consent-text" id="consentText">
-          بياناتك لن تُستخدم إلا لإشعارات الجنازة. هذه خدمة خيرية مجانية ولن تُستخدم بياناتك لأي أغراض تجارية.
-        </span>
+        <input type="checkbox" id="consent" required />
+        <span class="consent-text" id="consentText">بياناتك لن تُستخدم إلا لإشعارات الجنازة. هذه خدمة خيرية مجانية ولن تُستخدم بياناتك لأي أغراض تجارية.</span>
       </label>
 
       <button type="submit" class="btn-submit" id="submitBtn">
@@ -354,100 +190,135 @@
     const mosqueNameParam = params.get('name') || '';
     const mosqueGov = params.get('gov') || '';
 
-    document.getElementById('mosqueName').textContent =
-      mosqueNameParam ? decodeURIComponent(mosqueNameParam) : 'مسجد — ' + mosqueId;
-
-    // Auto-select governorate from QR if available
+    document.getElementById('mosqueName').textContent = mosqueNameParam ? decodeURIComponent(mosqueNameParam) : (isArabic ? 'مسجد — ' : 'Mosque — ') + mosqueId;
     if (mosqueGov) {
-      const govSelect = document.getElementById('governorate');
-      for (let opt of govSelect.options) {
-        if (opt.value === mosqueGov) { opt.selected = true; break; }
+      const s = document.getElementById('governorate');
+      for (let o of s.options) { if (o.value === mosqueGov) { o.selected = true; break; } }
+    }
+
+    const T = {
+      ar: {
+        lang: 'ar', dir: 'rtl', langBtn: 'English',
+        mainTitle: 'إشعارات صلاة الجنازة',
+        subTitle: 'سجّل رقمك لتصلك إشعارات الجنازة في منطقتك',
+        sec1: '📋 البيانات الشخصية', sec2: '📍 بيانات الموقع', sec3: '🔔 تفضيل الإشعارات',
+        labelName: 'الاسم الكامل', labelMobile: 'رقم الجوال (واتساب)',
+        labelGov: 'المحافظة', labelBlock: 'رقم البلوك / المنطقة',
+        govPlaceholder: '— اختر المحافظة —',
+        govCapital: 'محافظة العاصمة', govMuharraq: 'محافظة المحرق',
+        govNorthern: 'المحافظة الشمالية', govSouthern: 'المحافظة الجنوبية',
+        prefMyGovMain: 'محافظتي فقط', prefMyGovSub: 'إشعارات من محافظتك فقط',
+        prefAllMain: 'جميع المحافظات', prefAllSub: 'جميع إشعارات الجنازة في البحرين',
+        consent: 'بياناتك لن تُستخدم إلا لإشعارات الجنازة. هذه خدمة خيرية مجانية ولن تُستخدم بياناتك لأي أغراض تجارية.',
+        submit: 'تسجيل', namePlaceholder: 'مثال: أحمد محمد العلي', blockPlaceholder: 'مثال: 215',
+        nameError: 'الرجاء إدخال الاسم', mobileError: 'الرجاء إدخال رقم صحيح', govError: 'الرجاء اختيار المحافظة',
+        mosque: 'مسجد — '
+      },
+      en: {
+        lang: 'en', dir: 'ltr', langBtn: 'عربي',
+        mainTitle: 'Janaza Prayer Notifications',
+        subTitle: 'Register to receive Janaza notifications in your area',
+        sec1: '📋 Personal Information', sec2: '📍 Location', sec3: '🔔 Notification Preference',
+        labelName: 'Full Name', labelMobile: 'Mobile Number (WhatsApp)',
+        labelGov: 'Governorate', labelBlock: 'Block Number',
+        govPlaceholder: '— Select Governorate —',
+        govCapital: 'Capital Governorate', govMuharraq: 'Muharraq Governorate',
+        govNorthern: 'Northern Governorate', govSouthern: 'Southern Governorate',
+        prefMyGovMain: 'My Governorate Only', prefMyGovSub: 'Notifications from your governorate only',
+        prefAllMain: 'All Governorates', prefAllSub: 'All Janaza notifications across Bahrain',
+        consent: 'Your data will only be used for Janaza prayer notifications. This is a free charitable service and your data will never be used for commercial purposes.',
+        submit: 'Register', namePlaceholder: 'e.g. Ahmed Mohammed Al-Ali', blockPlaceholder: 'e.g. 215',
+        nameError: 'Please enter your full name', mobileError: 'Please enter a valid number', govError: 'Please select a governorate',
+        mosque: 'Mosque — '
       }
+    };
+
+    function applyLang(l) {
+      const t = T[l];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.getElementById('langBtn').textContent = t.langBtn;
+      document.getElementById('mainTitle').textContent = t.mainTitle;
+      document.getElementById('subTitle').textContent = t.subTitle;
+      document.getElementById('sec1Label').textContent = t.sec1;
+      document.getElementById('sec2Label').textContent = t.sec2;
+      document.getElementById('sec3Label').textContent = t.sec3;
+      document.getElementById('labelName').textContent = t.labelName;
+      document.getElementById('labelMobile').textContent = t.labelMobile;
+      document.getElementById('labelGov').textContent = t.labelGov;
+      document.getElementById('labelBlock').textContent = t.labelBlock;
+      document.getElementById('govPlaceholder').textContent = t.govPlaceholder;
+      document.getElementById('govCapital').textContent = t.govCapital;
+      document.getElementById('govMuharraq').textContent = t.govMuharraq;
+      document.getElementById('govNorthern').textContent = t.govNorthern;
+      document.getElementById('govSouthern').textContent = t.govSouthern;
+      document.getElementById('prefMyGovMain').textContent = t.prefMyGovMain;
+      document.getElementById('prefMyGovSub').textContent = t.prefMyGovSub;
+      document.getElementById('prefAllMain').textContent = t.prefAllMain;
+      document.getElementById('prefAllSub').textContent = t.prefAllSub;
+      document.getElementById('consentText').textContent = t.consent;
+      document.getElementById('submitText').textContent = t.submit;
+      document.getElementById('name').placeholder = t.namePlaceholder;
+      document.getElementById('block').placeholder = t.blockPlaceholder;
+      document.getElementById('nameError').textContent = t.nameError;
+      document.getElementById('mobileError').textContent = t.mobileError;
+      document.getElementById('govError').textContent = t.govError;
+      document.getElementById('mosqueName').textContent = mosqueNameParam ? decodeURIComponent(mosqueNameParam) : t.mosque + mosqueId;
     }
 
     function toggleLang() {
       isArabic = !isArabic;
-      document.documentElement.lang = isArabic ? 'ar' : 'en';
-      document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-      document.getElementById('langBtn').textContent = isArabic ? 'English' : 'عربي';
-      document.getElementById('mainTitle').textContent = isArabic ? 'إشعارات صلاة الجنازة' : 'Janaza Prayer Notifications';
-      document.getElementById('subTitle').textContent = isArabic ? 'سجّل رقمك لتصلك إشعارات الجنازة في منطقتك' : 'Register to receive Janaza notifications in your area';
-      document.getElementById('labelName').textContent = isArabic ? 'الاسم الكامل' : 'Full Name';
-      document.getElementById('labelMobile').textContent = isArabic ? 'رقم الجوال (واتساب)' : 'Mobile (WhatsApp)';
-      document.getElementById('labelGovSelect').textContent = isArabic ? 'المحافظة' : 'Governorate';
-      document.getElementById('labelBlock').textContent = isArabic ? 'رقم المنطقة / البلوك' : 'Block Number';
-      document.getElementById('sec1Label').textContent = isArabic ? '📋 البيانات الشخصية' : '📋 Personal Info';
-      document.getElementById('sec2Label').textContent = isArabic ? '📍 بيانات الموقع' : '📍 Location';
-      document.getElementById('sec3Label').textContent = isArabic ? '🔔 تفضيل الإشعارات' : '🔔 Notification Preference';
-      document.getElementById('govAutoAr').textContent = isArabic ? 'محافظتي فقط' : 'My governorate only';
-      document.getElementById('govAllAr').textContent = isArabic ? 'جميع المحافظات' : 'All governorates';
-      document.getElementById('consentText').textContent = isArabic
-        ? 'بياناتك لن تُستخدم إلا لإشعارات الجنازة. هذه خدمة خيرية مجانية ولن تُستخدم بياناتك لأي أغراض تجارية.'
-        : 'Your data will only be used for Janaza notifications. This is a free charitable service. Your data will never be used for commercial purposes.';
-      document.getElementById('submitText').textContent = isArabic ? 'تسجيل' : 'Register';
-      document.getElementById('name').placeholder = isArabic ? 'مثال: أحمد محمد العلي' : 'e.g. Ahmed Mohammed Al-Ali';
-      document.getElementById('block').placeholder = isArabic ? 'مثال: 215' : 'e.g. 215';
+      applyLang(isArabic ? 'ar' : 'en');
     }
 
     async function handleSubmit(e) {
       e.preventDefault();
-
       const name = document.getElementById('name').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
       const governorate = document.getElementById('governorate').value;
       const block = document.getElementById('block').value.trim();
-      const notifPref = document.querySelector('input[name="notif_preference"]:checked').value;
+      const notifPref = document.querySelector('input[name="notif_pref"]:checked').value;
       const consent = document.getElementById('consent').checked;
+      const t = T[isArabic ? 'ar' : 'en'];
 
-      if (!name) { document.getElementById('nameError').style.display = 'block'; return; }
-      document.getElementById('nameError').style.display = 'none';
-
-      if (!mobile || mobile.length < 8) { document.getElementById('mobileError').style.display = 'block'; return; }
-      document.getElementById('mobileError').style.display = 'none';
-
-      if (!governorate) { document.getElementById('govError').style.display = 'block'; return; }
-      document.getElementById('govError').style.display = 'none';
-
-      if (!consent) return;
+      let valid = true;
+      if (!name) { document.getElementById('nameError').style.display = 'block'; valid = false; } else { document.getElementById('nameError').style.display = 'none'; }
+      if (!mobile || mobile.length < 8) { document.getElementById('mobileError').style.display = 'block'; valid = false; } else { document.getElementById('mobileError').style.display = 'none'; }
+      if (!governorate) { document.getElementById('govError').style.display = 'block'; valid = false; } else { document.getElementById('govError').style.display = 'none'; }
+      if (!consent || !valid) return;
 
       document.getElementById('submitText').style.display = 'none';
       document.getElementById('spinner').style.display = 'block';
       document.getElementById('submitBtn').disabled = true;
 
       try {
-        const response = await fetch('/api/register', {
+        const res = await fetch('/api/register', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name,
-            mobile,
+            name, mobile,
             governorate_preference: notifPref === 'auto' ? governorate : 'all',
-            governorate,
-            block_number: block || null,
+            governorate, block_number: block || null,
             mosque_id: mosqueId,
             mosque_name: mosqueNameParam ? decodeURIComponent(mosqueNameParam) : mosqueId,
             consent: true
           })
         });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          window.location.href = '/thankyou.html?type=register';
-        } else {
-          alert(result.message || 'حدث خطأ، الرجاء المحاولة مجدداً');
+        const result = await res.json();
+        if (res.ok) { window.location.href = '/thankyou.html?type=register&lang=' + (isArabic ? 'ar' : 'en'); }
+        else {
+          alert(result.message || t.submit);
           document.getElementById('submitText').style.display = 'block';
           document.getElementById('spinner').style.display = 'none';
           document.getElementById('submitBtn').disabled = false;
         }
-      } catch (err) {
-        alert('تعذّر الاتصال بالخادم. الرجاء التحقق من الإنترنت.');
+      } catch {
+        alert(isArabic ? 'تعذّر الاتصال بالخادم' : 'Could not connect to server');
         document.getElementById('submitText').style.display = 'block';
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('submitBtn').disabled = false;
       }
     }
   </script>
-
 </body>
 </html>
