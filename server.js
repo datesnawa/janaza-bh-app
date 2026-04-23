@@ -328,11 +328,15 @@ app.post('/api/admin/approve/:id', adminAuth, async (req, res) => {
     const genderWordEn = notif.gender === 'male' ? 'Brother' : 'Sister';
     const loc = notif.janaza_location + (notif.janaza_area ? ' — ' + notif.janaza_area : '');
 
+   const dateObj = new Date(notif.janaza_date + 'T00:00:00');
+    const dateAr = dateObj.toLocaleDateString('ar-BH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const dateEn = dateObj.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
     const message = `🕌 إشعار صلاة الجنازة
 
 نُعلمكم بوفاة ${genderWord}: ${notif.deceased_name}
 📍 مكان الصلاة: ${loc}
-🗓 الموعد: ${notif.janaza_date}
+🗓 الموعد: ${dateAr}
 ⏰ الوقت: ${notif.janaza_time}
 
 ---
@@ -341,7 +345,7 @@ app.post('/api/admin/approve/:id', adminAuth, async (req, res) => {
 ${genderWordEn} ${notif.deceased_name} has passed away.
 May Allah have mercy on their soul.
 📍 Venue: ${loc}
-🗓 ${notif.janaza_date} at ${notif.janaza_time}
+🗓 ${dateEn} at ${notif.janaza_time}
 
 للإلغاء / Unsubscribe: reply STOP`;
 
