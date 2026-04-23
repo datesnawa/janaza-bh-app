@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>إشعار وفاة — إبلاغ عن صلاة الجنازة</title>
+  <title>إشعار صلاة الجنازة</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
@@ -13,13 +13,12 @@
       --green-light: #4a8c5c;
       --cream: #f5f0e8;
       --cream-dark: #e8e0d0;
-      --gold: #c9a84c;
       --gold-light: #e8c97a;
       --text-primary: #1a1a1a;
       --text-secondary: #4a4a4a;
       --white: #ffffff;
       --error: #c0392b;
-      --shadow: 0 8px 32px rgba(26, 58, 42, 0.15);
+      --shadow: 0 8px 32px rgba(26,58,42,0.15);
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -29,290 +28,77 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
       padding: 24px 16px 60px;
-      position: relative;
     }
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background:
-        radial-gradient(ellipse at 20% 20%, rgba(74,140,92,0.12) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
+      background: radial-gradient(ellipse at 20% 20%, rgba(74,140,92,0.12) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 80%, rgba(201,168,76,0.08) 0%, transparent 50%);
       pointer-events: none;
     }
-    .header {
-      text-align: center;
-      margin-bottom: 24px;
-      animation: fadeDown 0.6s ease both;
-    }
+    .header { text-align: center; margin-bottom: 20px; animation: fadeDown 0.6s ease both; }
     .header .icon { font-size: 38px; margin-bottom: 10px; }
-    .header h1 {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 24px;
-      font-weight: 700;
-      color: var(--cream);
-      line-height: 1.4;
-    }
-    .header p {
-      font-size: 13px;
-      color: var(--gold-light);
-      margin-top: 6px;
-      font-weight: 300;
-    }
-    .inna {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 15px;
-      color: rgba(245,240,232,0.6);
-      text-align: center;
-      margin-bottom: 20px;
-      animation: fadeDown 0.6s ease 0.1s both;
-    }
-    .card {
-      background: var(--cream);
-      border-radius: 20px;
-      padding: 28px 24px;
-      width: 100%;
-      max-width: 440px;
-      box-shadow: var(--shadow), 0 2px 0 rgba(201,168,76,0.3);
-      animation: fadeUp 0.7s ease 0.15s both;
-    }
-    .section-title {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--green-mid);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 16px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid var(--cream-dark);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
+    .header h1 { font-family: 'Noto Naskh Arabic', serif; font-size: 24px; font-weight: 700; color: var(--cream); }
+    .header p { font-size: 13px; color: var(--gold-light); margin-top: 6px; font-weight: 300; }
+    .inna { font-family: 'Noto Naskh Arabic', serif; font-size: 15px; color: rgba(245,240,232,0.6); text-align: center; margin-bottom: 20px; }
+    .card { background: var(--cream); border-radius: 20px; padding: 28px 24px; width: 100%; max-width: 440px; box-shadow: var(--shadow); animation: fadeUp 0.7s ease 0.1s both; }
+    .section-label { font-family: 'Noto Naskh Arabic', serif; font-size: 12px; font-weight: 700; color: var(--green-mid); letter-spacing: 0.5px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--cream-dark); }
     .field { margin-bottom: 18px; }
-    label {
-      display: block;
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--green-deep);
-      margin-bottom: 7px;
+    label { display: block; font-family: 'Noto Naskh Arabic', serif; font-size: 15px; font-weight: 600; color: var(--green-deep); margin-bottom: 7px; }
+    input[type="text"], input[type="tel"], input[type="date"], input[type="time"], select {
+      width: 100%; padding: 13px 16px; border: 1.5px solid var(--cream-dark); border-radius: 12px;
+      font-family: 'Noto Sans Arabic', sans-serif; font-size: 15px; color: var(--text-primary);
+      background: var(--white); outline: none; transition: border-color 0.2s, box-shadow 0.2s; text-align: right;
     }
-    label .en {
-      font-family: 'Noto Sans Arabic', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      color: var(--text-secondary);
-      margin-right: 6px;
-    }
-    input[type="text"],
-    input[type="tel"],
-    input[type="date"],
-    input[type="time"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 13px 16px;
-      border: 1.5px solid var(--cream-dark);
-      border-radius: 12px;
-      font-family: 'Noto Sans Arabic', sans-serif;
-      font-size: 15px;
-      color: var(--text-primary);
-      background: var(--white);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      text-align: right;
-    }
-    input[type="tel"] { direction: ltr; text-align: left; }
-    input[type="date"],
-    input[type="time"] { direction: ltr; text-align: left; }
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--green-light);
-      box-shadow: 0 0 0 3px rgba(74,140,92,0.12);
-    }
-    textarea { resize: vertical; min-height: 80px; }
-    .gender-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+    input[type="tel"], input[type="date"], input[type="time"] { direction: ltr; text-align: left; }
+    input:focus, select:focus { border-color: var(--green-light); box-shadow: 0 0 0 3px rgba(74,140,92,0.12); }
+    .gender-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .gender-option {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 16px;
-      border: 1.5px solid var(--cream-dark);
-      border-radius: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--white);
+      display: flex; align-items: center; gap: 10px; padding: 13px 16px;
+      border: 1.5px solid var(--cream-dark); border-radius: 12px; cursor: pointer; transition: all 0.2s; background: var(--white);
     }
-    .gender-option:has(input:checked) {
-      border-color: var(--green-light);
-      background: rgba(74,140,92,0.06);
-    }
-    .gender-option input[type="radio"] {
-      width: 17px;
-      height: 17px;
-      accent-color: var(--green-mid);
-    }
-    .gender-option span {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--green-deep);
-    }
-    .datetime-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .gov-select-row {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
+    .gender-option:has(input:checked) { border-color: var(--green-light); background: rgba(74,140,92,0.06); }
+    .gender-option input[type="radio"] { width: 17px; height: 17px; accent-color: var(--green-mid); }
+    .gender-option span { font-family: 'Noto Naskh Arabic', serif; font-size: 14px; font-weight: 600; color: var(--green-deep); }
+    .datetime-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .upload-area {
-      border: 2px dashed var(--cream-dark);
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s;
-      background: var(--white);
-      position: relative;
+      border: 2px dashed var(--cream-dark); border-radius: 12px; padding: 20px;
+      text-align: center; cursor: pointer; transition: all 0.2s; background: var(--white); position: relative;
     }
-    .upload-area:hover {
-      border-color: var(--green-light);
-      background: rgba(74,140,92,0.03);
-    }
-    .upload-area.has-file {
-      border-color: var(--green-light);
-      background: rgba(74,140,92,0.06);
-    }
-    .upload-area input[type="file"] {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      cursor: pointer;
-      width: 100%;
-      height: 100%;
-    }
+    .upload-area:hover { border-color: var(--green-light); background: rgba(74,140,92,0.03); }
+    .upload-area.has-file { border-color: var(--green-light); background: rgba(74,140,92,0.06); }
+    .upload-area input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
     .upload-icon { font-size: 28px; margin-bottom: 8px; }
-    .upload-text {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 14px;
-      color: var(--text-secondary);
-    }
+    .upload-text { font-family: 'Noto Naskh Arabic', serif; font-size: 14px; color: var(--text-secondary); }
     .upload-text strong { color: var(--green-mid); }
-    .upload-filename {
-      font-size: 12px;
-      color: var(--green-mid);
-      margin-top: 6px;
-      font-weight: 600;
-      display: none;
-    }
-    .preview-box {
-      display: none;
-      margin-top: 10px;
-      border-radius: 8px;
-      overflow: hidden;
-      max-height: 160px;
-    }
-    .preview-box img {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    .message-preview {
-      background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3d 100%);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 20px;
-      color: var(--cream);
-    }
-    .message-preview .preview-label {
-      font-size: 11px;
-      color: var(--gold-light);
-      margin-bottom: 12px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .message-preview .msg-text {
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 14px;
-      line-height: 1.8;
-      white-space: pre-line;
-    }
-    .divider {
-      height: 1px;
-      background: var(--cream-dark);
-      margin: 22px 0;
-    }
+    .upload-filename { font-size: 12px; color: var(--green-mid); margin-top: 6px; font-weight: 600; display: none; }
+    .preview-box { display: none; margin-top: 10px; border-radius: 8px; overflow: hidden; max-height: 160px; }
+    .preview-box img { width: 100%; object-fit: cover; border-radius: 8px; }
+    .message-preview { background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3d 100%); border-radius: 16px; padding: 20px; margin-bottom: 20px; color: var(--cream); }
+    .preview-label { font-size: 11px; color: var(--gold-light); margin-bottom: 12px; font-weight: 600; letter-spacing: 0.5px; }
+    .msg-text { font-family: 'Noto Naskh Arabic', serif; font-size: 13px; line-height: 1.8; white-space: pre-line; }
+    .note-box { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); border-radius: 12px; padding: 13px 16px; margin-bottom: 20px; font-family: 'Noto Naskh Arabic', serif; font-size: 13px; color: #6b5a2a; line-height: 1.6; }
+    .divider { height: 1px; background: var(--cream-dark); margin: 22px 0; }
     .btn-submit {
-      width: 100%;
-      padding: 15px;
-      background: var(--green-mid);
-      color: var(--cream);
-      border: none;
-      border-radius: 14px;
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 16px rgba(45,90,61,0.35);
+      width: 100%; padding: 15px; background: var(--green-mid); color: var(--cream); border: none;
+      border-radius: 14px; font-family: 'Noto Naskh Arabic', serif; font-size: 18px; font-weight: 700;
+      cursor: pointer; transition: background 0.2s, transform 0.1s; box-shadow: 0 4px 16px rgba(45,90,61,0.35);
     }
     .btn-submit:hover { background: var(--green-deep); }
     .btn-submit:active { transform: scale(0.98); }
     .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-    .note-box {
-      background: rgba(201,168,76,0.1);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 12px;
-      padding: 13px 16px;
-      margin-bottom: 20px;
-      font-family: 'Noto Naskh Arabic', serif;
-      font-size: 13px;
-      color: #6b5a2a;
-      line-height: 1.6;
-    }
     .lang-toggle {
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      background: rgba(245,240,232,0.15);
-      border: 1px solid rgba(245,240,232,0.25);
-      color: var(--cream);
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 12px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      transition: background 0.2s;
+      position: fixed; top: 16px; left: 16px;
+      background: rgba(245,240,232,0.15); border: 1px solid rgba(245,240,232,0.25);
+      color: var(--cream); border-radius: 20px; padding: 5px 14px; font-size: 12px;
+      cursor: pointer; backdrop-filter: blur(10px); font-family: 'Noto Sans Arabic', sans-serif;
     }
-    .spinner {
-      display: none;
-      width: 18px;
-      height: 18px;
-      border: 2px solid rgba(245,240,232,0.3);
-      border-top-color: var(--cream);
-      border-radius: 50%;
-      animation: spin 0.7s linear infinite;
-      margin: 0 auto;
-    }
+    .spinner { display: none; width: 18px; height: 18px; border: 2px solid rgba(245,240,232,0.3); border-top-color: var(--cream); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto; }
     @keyframes spin { to { transform: rotate(360deg); } }
-    @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    @keyframes fadeDown { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   </style>
 </head>
 <body>
@@ -328,70 +114,58 @@
   <div class="inna" id="innaText">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</div>
 
   <div class="card">
-
-    <div class="note-box" id="noteBox">
-      سيتم مراجعة هذا الإشعار من قِبل المشرف قبل إرساله للمشتركين. يُرجى رفع صورة شهادة الوفاة للتحقق.
-    </div>
+    <div class="note-box" id="noteBox">سيتم مراجعة هذا الإشعار من قِبل المشرف قبل إرساله للمشتركين. يُرجى رفع صورة شهادة الوفاة للتحقق.</div>
 
     <form id="notifyForm" onsubmit="handleSubmit(event)">
 
-      <!-- SECTION 1: Deceased Info -->
-      <div class="section-title">
-        <span>📋</span>
-        <span id="sec1Title">بيانات المتوفى / المتوفاة</span>
-      </div>
+      <div class="section-label" id="sec1Label">📋 بيانات المتوفى / المتوفاة</div>
 
       <div class="field">
-        <label id="labelDeceased">اسم المتوفى / المتوفاة <span class="en">Full name of deceased</span></label>
+        <label id="labelDeceased" for="deceasedName">اسم المتوفى / المتوفاة</label>
         <input type="text" id="deceasedName" placeholder="مثال: أحمد محمد العلي" required />
       </div>
 
       <div class="field">
-        <label id="labelGender">الجنس <span class="en">Gender</span></label>
+        <label id="labelGender">الجنس</label>
         <div class="gender-row">
           <label class="gender-option">
             <input type="radio" name="gender" value="male" checked />
-            <span id="genderMale">المتوفى (ذكر)</span>
+            <span id="genderMale">المتوفى — ذكر</span>
           </label>
           <label class="gender-option">
             <input type="radio" name="gender" value="female" />
-            <span id="genderFemale">المتوفاة (أنثى)</span>
+            <span id="genderFemale">المتوفاة — أنثى</span>
           </label>
         </div>
       </div>
 
       <div class="divider"></div>
-
-      <!-- SECTION 2: Janaza Details -->
-      <div class="section-title">
-        <span>🕌</span>
-        <span id="sec2Title">تفاصيل صلاة الجنازة</span>
-      </div>
+      <div class="section-label" id="sec2Label">🕌 تفاصيل صلاة الجنازة</div>
 
       <div class="field">
-        <label id="labelLocation">مكان صلاة الجنازة <span class="en">Prayer venue</span></label>
+        <label id="labelLocation" for="janazaLocation">مكان صلاة الجنازة</label>
         <input type="text" id="janazaLocation" placeholder="مثال: مسجد الفاتح الكبير" required />
       </div>
 
       <div class="field">
-        <label id="labelArea">المنطقة <span class="en">Area</span></label>
+        <label id="labelArea" for="janazaArea">المنطقة</label>
         <input type="text" id="janazaArea" placeholder="مثال: جفير، المنامة" />
       </div>
 
       <div class="field">
-        <label id="labelGov">المحافظة <span class="en">Governorate</span></label>
+        <label id="labelGov" for="governorate">المحافظة</label>
         <select id="governorate" required>
-          <option value="">— اختر المحافظة —</option>
-          <option value="capital">محافظة العاصمة — Capital</option>
-          <option value="muharraq">محافظة المحرق — Muharraq</option>
-          <option value="northern">المحافظة الشمالية — Northern</option>
-          <option value="southern">المحافظة الجنوبية — Southern</option>
-          <option value="all">جميع المحافظات — All</option>
+          <option value="" id="govPlaceholder">— اختر المحافظة —</option>
+          <option value="capital" id="govCapital">محافظة العاصمة</option>
+          <option value="muharraq" id="govMuharraq">محافظة المحرق</option>
+          <option value="northern" id="govNorthern">المحافظة الشمالية</option>
+          <option value="southern" id="govSouthern">المحافظة الجنوبية</option>
+          <option value="all" id="govAll">جميع المحافظات</option>
         </select>
       </div>
 
       <div class="field">
-        <label id="labelDateTime">التاريخ والوقت <span class="en">Date & Time</span></label>
+        <label id="labelDateTime">التاريخ والوقت</label>
         <div class="datetime-row">
           <input type="date" id="janazaDate" required />
           <input type="time" id="janazaTime" required />
@@ -399,43 +173,29 @@
       </div>
 
       <div class="divider"></div>
-
-      <!-- SECTION 3: Message Preview -->
-      <div class="section-title">
-        <span>💬</span>
-        <span id="sec3Title">معاينة الرسالة</span>
-      </div>
+      <div class="section-label" id="sec3Label">💬 معاينة الرسالة</div>
 
       <div class="message-preview">
-        <div class="preview-label">📲 الرسالة التي ستُرسل للمشتركين</div>
+        <div class="preview-label" id="previewLabel">📲 الرسالة التي ستُرسل للمشتركين</div>
         <div class="msg-text" id="msgPreview">أدخل البيانات أعلاه لمعاينة الرسالة...</div>
       </div>
 
       <div class="divider"></div>
-
-      <!-- SECTION 4: Verification -->
-      <div class="section-title">
-        <span>📄</span>
-        <span id="sec4Title">التحقق والتواصل</span>
-      </div>
+      <div class="section-label" id="sec4Label">📄 التحقق والتواصل</div>
 
       <div class="field">
-        <label id="labelCert">صورة شهادة الوفاة <span class="en">Death certificate photo</span></label>
+        <label id="labelCert">صورة شهادة الوفاة</label>
         <div class="upload-area" id="uploadArea">
           <input type="file" id="certFile" accept="image/*,application/pdf" onchange="handleFileSelect(this)" />
           <div class="upload-icon">📎</div>
-          <div class="upload-text" id="uploadText">
-            <strong>اضغط لرفع الصورة</strong><br />صورة أو PDF — شهادة الوفاة
-          </div>
+          <div class="upload-text" id="uploadText"><strong id="uploadStrong">اضغط لرفع الصورة</strong><br /><span id="uploadSub">صورة أو PDF — شهادة الوفاة</span></div>
           <div class="upload-filename" id="uploadFilename"></div>
-          <div class="preview-box" id="previewBox">
-            <img id="previewImg" src="" alt="معاينة" />
-          </div>
+          <div class="preview-box" id="previewBox"><img id="previewImg" src="" alt="" /></div>
         </div>
       </div>
 
       <div class="field">
-        <label id="labelSubmitter">رقم جوال مقدّم الطلب <span class="en">Your mobile number</span></label>
+        <label id="labelSubmitter" for="submitterMobile">رقم جوال مقدّم الطلب</label>
         <input type="tel" id="submitterMobile" placeholder="+973 3XXX XXXX" required />
       </div>
 
@@ -450,13 +210,109 @@
   <script>
     let isArabic = true;
 
-    // Set today's date as default
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('janazaDate').value = today;
     document.getElementById('janazaDate').min = today;
 
-    // Live message preview
+    const T = {
+      ar: {
+        lang:'ar', dir:'rtl', langBtn:'English',
+        mainTitle:'إشعار صلاة الجنازة',
+        subTitle:'يرجى تعبئة البيانات التالية لإبلاغ المجتمع',
+        inna:'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ',
+        note:'سيتم مراجعة هذا الإشعار من قِبل المشرف قبل إرساله للمشتركين. يُرجى رفع صورة شهادة الوفاة للتحقق.',
+        sec1:'📋 بيانات المتوفى / المتوفاة', sec2:'🕌 تفاصيل صلاة الجنازة',
+        sec3:'💬 معاينة الرسالة', sec4:'📄 التحقق والتواصل',
+        labelDeceased:'اسم المتوفى / المتوفاة', labelGender:'الجنس',
+        genderMale:'المتوفى — ذكر', genderFemale:'المتوفاة — أنثى',
+        labelLocation:'مكان صلاة الجنازة', labelArea:'المنطقة',
+        labelGov:'المحافظة', labelDateTime:'التاريخ والوقت',
+        govPlaceholder:'— اختر المحافظة —', govCapital:'محافظة العاصمة',
+        govMuharraq:'محافظة المحرق', govNorthern:'المحافظة الشمالية',
+        govSouthern:'المحافظة الجنوبية', govAll:'جميع المحافظات',
+        previewLabel:'📲 الرسالة التي ستُرسل للمشتركين',
+        previewEmpty:'أدخل البيانات أعلاه لمعاينة الرسالة...',
+        labelCert:'صورة شهادة الوفاة',
+        uploadStrong:'اضغط لرفع الصورة', uploadSub:'صورة أو PDF — شهادة الوفاة',
+        labelSubmitter:'رقم جوال مقدّم الطلب',
+        submit:'إرسال الإشعار للمراجعة',
+        deceasedPlaceholder:'مثال: أحمد محمد العلي',
+        locationPlaceholder:'مثال: مسجد الفاتح الكبير',
+        areaPlaceholder:'مثال: جفير، المنامة',
+      },
+      en: {
+        lang:'en', dir:'ltr', langBtn:'عربي',
+        mainTitle:'Janaza Prayer Notification',
+        subTitle:'Please fill in the details below to notify the community',
+        inna:'Indeed, to Allah we belong and to Him we shall return',
+        note:'This notification will be reviewed by an admin before being sent to subscribers. Please upload the death certificate for verification.',
+        sec1:'📋 Deceased Information', sec2:'🕌 Janaza Prayer Details',
+        sec3:'💬 Message Preview', sec4:'📄 Verification & Contact',
+        labelDeceased:'Full Name of Deceased', labelGender:'Gender',
+        genderMale:'Male (Brother)', genderFemale:'Female (Sister)',
+        labelLocation:'Janaza Prayer Venue', labelArea:'Area',
+        labelGov:'Governorate', labelDateTime:'Date & Time',
+        govPlaceholder:'— Select Governorate —', govCapital:'Capital Governorate',
+        govMuharraq:'Muharraq Governorate', govNorthern:'Northern Governorate',
+        govSouthern:'Southern Governorate', govAll:'All Governorates',
+        previewLabel:'📲 Message that will be sent to subscribers',
+        previewEmpty:'Enter the details above to preview the message...',
+        labelCert:'Death Certificate Photo',
+        uploadStrong:'Tap to upload', uploadSub:'Image or PDF — Death Certificate',
+        labelSubmitter:'Your Mobile Number',
+        submit:'Submit for Review',
+        deceasedPlaceholder:'e.g. Ahmed Mohammed Al-Ali',
+        locationPlaceholder:'e.g. Al-Fateh Grand Mosque',
+        areaPlaceholder:'e.g. Juffair, Manama',
+      }
+    };
+
+    function applyLang(l) {
+      const t = T[l];
+      document.documentElement.lang = t.lang;
+      document.documentElement.dir = t.dir;
+      document.getElementById('langBtn').textContent = t.langBtn;
+      document.getElementById('mainTitle').textContent = t.mainTitle;
+      document.getElementById('subTitle').textContent = t.subTitle;
+      document.getElementById('innaText').textContent = t.inna;
+      document.getElementById('noteBox').textContent = t.note;
+      document.getElementById('sec1Label').textContent = t.sec1;
+      document.getElementById('sec2Label').textContent = t.sec2;
+      document.getElementById('sec3Label').textContent = t.sec3;
+      document.getElementById('sec4Label').textContent = t.sec4;
+      document.getElementById('labelDeceased').textContent = t.labelDeceased;
+      document.getElementById('labelGender').textContent = t.labelGender;
+      document.getElementById('genderMale').textContent = t.genderMale;
+      document.getElementById('genderFemale').textContent = t.genderFemale;
+      document.getElementById('labelLocation').textContent = t.labelLocation;
+      document.getElementById('labelArea').textContent = t.labelArea;
+      document.getElementById('labelGov').textContent = t.labelGov;
+      document.getElementById('labelDateTime').textContent = t.labelDateTime;
+      document.getElementById('govPlaceholder').textContent = t.govPlaceholder;
+      document.getElementById('govCapital').textContent = t.govCapital;
+      document.getElementById('govMuharraq').textContent = t.govMuharraq;
+      document.getElementById('govNorthern').textContent = t.govNorthern;
+      document.getElementById('govSouthern').textContent = t.govSouthern;
+      document.getElementById('govAll').textContent = t.govAll;
+      document.getElementById('previewLabel').textContent = t.previewLabel;
+      document.getElementById('labelCert').textContent = t.labelCert;
+      document.getElementById('uploadStrong').textContent = t.uploadStrong;
+      document.getElementById('uploadSub').textContent = t.uploadSub;
+      document.getElementById('labelSubmitter').textContent = t.labelSubmitter;
+      document.getElementById('submitText').textContent = t.submit;
+      document.getElementById('deceasedName').placeholder = t.deceasedPlaceholder;
+      document.getElementById('janazaLocation').placeholder = t.locationPlaceholder;
+      document.getElementById('janazaArea').placeholder = t.areaPlaceholder;
+      updatePreview();
+    }
+
+    function toggleLang() {
+      isArabic = !isArabic;
+      applyLang(isArabic ? 'ar' : 'en');
+    }
+
     function updatePreview() {
+      const t = T[isArabic ? 'ar' : 'en'];
       const name = document.getElementById('deceasedName').value.trim();
       const gender = document.querySelector('input[name="gender"]:checked').value;
       const location = document.getElementById('janazaLocation').value.trim();
@@ -464,45 +320,22 @@
       const date = document.getElementById('janazaDate').value;
       const time = document.getElementById('janazaTime').value;
 
-      if (!name && !location) {
-        document.getElementById('msgPreview').textContent = 'أدخل البيانات أعلاه لمعاينة الرسالة...';
-        return;
-      }
+      if (!name && !location) { document.getElementById('msgPreview').textContent = t.previewEmpty; return; }
 
-      const genderWord = gender === 'male' ? 'المتوفى' : 'المتوفاة';
-      const genderWordEn = gender === 'male' ? 'Brother' : 'Sister';
-      const nameDisplay = name || '...';
-      const locationDisplay = location + (area ? ' — ' + area : '');
-      const dateDisplay = date ? new Date(date).toLocaleDateString('ar-BH', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : '...';
-      const timeDisplay = time || '...';
+      const gAr = gender === 'male' ? 'المتوفى' : 'المتوفاة';
+      const gEn = gender === 'male' ? 'Brother' : 'Sister';
+      const loc = location + (area ? ' — ' + area : '');
+      const dateDisplay = date ? new Date(date + 'T00:00:00').toLocaleDateString('en-BH', { weekday:'long', year:'numeric', month:'long', day:'numeric' }) : '...';
 
-      const msg = `🕌 إشعار صلاة الجنازة
-
-نُعلمكم بوفاة ${genderWord}: ${nameDisplay}
-📍 مكان الصلاة: ${locationDisplay}
-🗓 الموعد: ${dateDisplay}
-⏰ الوقت: ${timeDisplay}
-
----
-🕌 Janaza Prayer Notification
-
-${genderWordEn} ${nameDisplay} has passed away.
-May Allah have mercy on their soul.
-📍 Venue: ${locationDisplay}
-🗓 ${dateDisplay} at ${timeDisplay}
-
-للإلغاء / Unsubscribe: reply STOP`;
+      const msg = `🕌 إشعار صلاة الجنازة\n\nنُعلمكم بوفاة ${gAr}: ${name || '...'}\n📍 مكان الصلاة: ${loc || '...'}\n🗓 الموعد: ${dateDisplay}\n⏰ الوقت: ${time || '...'}\n\n---\n🕌 Janaza Prayer Notification\n\n${gEn} ${name || '...'} has passed away.\nMay Allah have mercy on their soul.\n📍 Venue: ${loc || '...'}\n🗓 ${dateDisplay} at ${time || '...'}\n\nللإلغاء / Unsubscribe: reply STOP`;
 
       document.getElementById('msgPreview').textContent = msg;
     }
 
-    // Attach live preview listeners
     ['deceasedName','janazaLocation','janazaArea','janazaDate','janazaTime'].forEach(id => {
       document.getElementById(id).addEventListener('input', updatePreview);
     });
-    document.querySelectorAll('input[name="gender"]').forEach(r => {
-      r.addEventListener('change', updatePreview);
-    });
+    document.querySelectorAll('input[name="gender"]').forEach(r => r.addEventListener('change', updatePreview));
 
     function handleFileSelect(input) {
       const file = input.files[0];
@@ -510,20 +343,15 @@ May Allah have mercy on their soul.
       document.getElementById('uploadFilename').textContent = '✓ ' + file.name;
       document.getElementById('uploadFilename').style.display = 'block';
       document.getElementById('uploadArea').classList.add('has-file');
-
       if (file.type.startsWith('image/')) {
         const reader = new FileReader();
-        reader.onload = e => {
-          document.getElementById('previewImg').src = e.target.result;
-          document.getElementById('previewBox').style.display = 'block';
-        };
+        reader.onload = e => { document.getElementById('previewImg').src = e.target.result; document.getElementById('previewBox').style.display = 'block'; };
         reader.readAsDataURL(file);
       }
     }
 
     async function handleSubmit(e) {
       e.preventDefault();
-
       const name = document.getElementById('deceasedName').value.trim();
       const gender = document.querySelector('input[name="gender"]:checked').value;
       const location = document.getElementById('janazaLocation').value.trim();
@@ -534,8 +362,8 @@ May Allah have mercy on their soul.
       const submitterMobile = document.getElementById('submitterMobile').value.trim();
       const certFile = document.getElementById('certFile').files[0];
 
-      if (!governorate) { alert('الرجاء اختيار المحافظة'); return; }
-      if (!submitterMobile) { alert('الرجاء إدخال رقم جوال للتواصل'); return; }
+      if (!governorate) { alert(isArabic ? 'الرجاء اختيار المحافظة' : 'Please select a governorate'); return; }
+      if (!submitterMobile) { alert(isArabic ? 'الرجاء إدخال رقم الجوال' : 'Please enter your mobile number'); return; }
 
       document.getElementById('submitText').style.display = 'none';
       document.getElementById('spinner').style.display = 'block';
@@ -553,43 +381,24 @@ May Allah have mercy on their soul.
         formData.append('submitter_mobile', submitterMobile);
         if (certFile) formData.append('death_certificate', certFile);
 
-        const response = await fetch('/api/notify', {
-          method: 'POST',
-          body: formData
-        });
+        const res = await fetch('/api/notify', { method: 'POST', body: formData });
+        const result = await res.json();
 
-        const result = await response.json();
-
-        if (response.ok) {
-          window.location.href = '/thankyou.html?type=notify';
+        if (res.ok) {
+          window.location.href = '/thankyou.html?type=notify&lang=' + (isArabic ? 'ar' : 'en');
         } else {
-          alert(result.message || 'حدث خطأ، الرجاء المحاولة مجدداً');
+          alert(result.message || (isArabic ? 'حدث خطأ' : 'An error occurred'));
           document.getElementById('submitText').style.display = 'block';
           document.getElementById('spinner').style.display = 'none';
           document.getElementById('submitBtn').disabled = false;
         }
-      } catch (err) {
-        alert('تعذّر الاتصال بالخادم. الرجاء التحقق من الإنترنت.');
+      } catch {
+        alert(isArabic ? 'تعذّر الاتصال بالخادم' : 'Could not connect to server');
         document.getElementById('submitText').style.display = 'block';
         document.getElementById('spinner').style.display = 'none';
         document.getElementById('submitBtn').disabled = false;
       }
     }
-
-    function toggleLang() {
-      isArabic = !isArabic;
-      document.documentElement.lang = isArabic ? 'ar' : 'en';
-      document.documentElement.dir = isArabic ? 'rtl' : 'ltr';
-      document.getElementById('langBtn').textContent = isArabic ? 'English' : 'عربي';
-      document.getElementById('mainTitle').textContent = isArabic ? 'إشعار صلاة الجنازة' : 'Janaza Prayer Notification';
-      document.getElementById('subTitle').textContent = isArabic ? 'يرجى تعبئة البيانات التالية لإبلاغ المجتمع' : 'Please fill in the details to notify the community';
-      document.getElementById('innaText').textContent = isArabic ? 'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ' : 'Indeed, to Allah we belong and to Him we shall return';
-      document.getElementById('noteBox').textContent = isArabic
-        ? 'سيتم مراجعة هذا الإشعار من قِبل المشرف قبل إرساله للمشتركين. يُرجى رفع صورة شهادة الوفاة للتحقق.'
-        : 'This notification will be reviewed by an admin before being sent to subscribers. Please upload the death certificate for verification.';
-      document.getElementById('submitText').textContent = isArabic ? 'إرسال الإشعار للمراجعة' : 'Submit for Review';
-    }
   </script>
-
 </body>
 </html>
