@@ -18,7 +18,7 @@ const supabase = createClient(
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Multer — store uploads in memory for Supabase upload
 const upload = multer({
@@ -38,7 +38,15 @@ const validTokens = new Set();
 // ROUTE: Home → redirect to register
 // ─────────────────────────────────────────────
 app.get('/', (req, res) => {
-  res.redirect('/register.html');
+  res.sendFile(path.join(__dirname, 'public', 'register.html'));
+});
+
+app.get('/notify', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'notify.html'));
+});
+
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'admin.html'));
 });
 
 // ─────────────────────────────────────────────
